@@ -15,29 +15,32 @@ public class Sketch extends PApplet {
   
   public void setup() {
     size(400, 400);
-    backgroundImg = loadImage("bale-1 (1).png"); // Load background image
-    background(backgroundImg); // Set the background image
+    background(255); // Set background color to white
+    
+    // Set the background image to the prompt image
+    backgroundImg = loadImage("your_prompt_image.png"); // Load the prompt image
+    
     img = loadImage("4723250.png"); // Load image
-    img.resize(4, 4); // Resize image to fit screen
+    img.resize(40, 40); // Resize image to fit screen
     imgX = width / 2;
     imgY = height / 2;
   }
   
   public void draw() {
-    background(backgroundImg); // Redraw background image in every frame
+    image(backgroundImg, 0, 0, width, height); // Display prompt image as background
     
     // Animate the image in a circular path
     imgX = width / 2 + cos(angle) * radius;
     imgY = height / 2 + sin(angle) * radius;
     image(img, imgX, imgY); // Display image
     
-    angle += 0.05; // Increment angle for smooth motion
-    
     // Ensure angle stays within 0 to TWO_PI
     if (angle > TWO_PI) {
       angle = 0;
-    }
-}  
+    } 
+    angle += 0.05; // Increment angle for smooth motion
+  }
+  
   public static void main(String[] args) {
     PApplet.main("Sketch");
   }
