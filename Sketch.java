@@ -1,36 +1,44 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Sketch extends PApplet {
-	
-	
-  /**
-   * Called once at the beginning of execution, put your size all in this method
-   */
+  
+  PImage img;
+  float imgX, imgY;
+  float angle = 0;
+  float radius = 100;
+  PImage backgroundImg; // Declare background image variable
+  
   public void settings() {
-	// put your size call here
     size(400, 400);
   }
-
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
-   */
+  
   public void setup() {
-    background(210, 255, 173);
-  }
-
-  /**
-   * Called repeatedly, anything drawn to the screen goes here
-   */
-  public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
-
-    stroke(255);
-    line(50, 125, 70, 50);  
+    size(400, 400);
+    backgroundImg = loadImage("bale-1 (1).png"); // Load background image
+    background(backgroundImg); // Set the background image
+    img = loadImage("4723250.png"); // Load image
+    img.resize(40, 40); // Resize image to fit screen
+    imgX = width / 2;
+    imgY = height / 2;
   }
   
-  // define other methods down here.
+  public void draw() {
+    background(backgroundImg); // Redraw background image in every frame
+    
+    // Animate the image in a circular path
+    imgX = width / 2 + cos(angle) * radius;
+    imgY = height / 2 + sin(angle) * radius;
+    image(img, imgX, imgY); // Display image
+    
+    // Ensure angle stays within 0 to TWO_PI
+    if (angle > TWO_PI) {
+      angle = 0;
+    } 
+    angle += 0.05; // Increment angle for smooth motion
+  }
+  
+  public static void main(String[] args) {
+    PApplet.main("Sketch");
+  }
 }
