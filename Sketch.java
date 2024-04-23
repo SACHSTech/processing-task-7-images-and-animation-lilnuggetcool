@@ -15,11 +15,8 @@ public class Sketch extends PApplet {
   
   public void setup() {
     size(400, 400);
-    background(255); // Set background color to white
-    
-    // Set the background image to the prompt image
-    backgroundImg = loadImage("your_prompt_image.png"); // Load the prompt image
-    
+    backgroundImg = loadImage("bale-1 (1).png"); // Load background image
+    background(backgroundImg); // Set the background image
     img = loadImage("4723250.png"); // Load image
     img.resize(40, 40); // Resize image to fit screen
     imgX = width / 2;
@@ -27,7 +24,7 @@ public class Sketch extends PApplet {
   }
   
   public void draw() {
-    image(backgroundImg, 0, 0, width, height); // Display prompt image as background
+    background(backgroundImg); // Redraw background image in every frame
     
     // Animate the image in a circular path
     imgX = width / 2 + cos(angle) * radius;
